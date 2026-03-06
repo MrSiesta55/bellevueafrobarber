@@ -1,4 +1,9 @@
+"use client";
+import { useState } from "react";
+
 export default function BarberLanding() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
     <div className="min-h-screen bg-white text-gray-900 font-sans">
 
@@ -6,15 +11,50 @@ export default function BarberLanding() {
       <nav className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-100">
         <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
           <span className="text-xl font-bold tracking-tight text-gray-900">
-            Bellevue <span className="text-amber-500">Afro</span> Barber
+            Bellevue <span className="text-amber-600">Afro</span> Barber
           </span>
-          <a
-            href="tel:0790784861"
-            className="px-5 py-2 bg-amber-500 text-white rounded-full text-sm font-semibold hover:bg-amber-600 transition-colors"
-          >
-            Boka Nu
-          </a>
+
+          {/* Desktop nav links */}
+          <div className="hidden sm:flex items-center gap-8">
+            <a href="#services" className="text-sm font-medium text-gray-600 hover:text-amber-600 transition-colors">Tjänster</a>
+            <a href="#gallery" className="text-sm font-medium text-gray-600 hover:text-amber-600 transition-colors">Galleri</a>
+            <a href="#contact" className="text-sm font-medium text-gray-600 hover:text-amber-600 transition-colors">Kontakt</a>
+            <a
+              href="tel:0790784861"
+              className="px-5 py-2 bg-amber-600 text-white rounded-full text-sm font-semibold hover:bg-amber-700 transition-colors"
+            >
+              Boka Nu
+            </a>
+          </div>
+
+          {/* Mobile: Book button + Hamburger */}
+          <div className="flex sm:hidden items-center gap-3">
+            <a
+              href="tel:0790784861"
+              className="px-4 py-2 bg-amber-600 text-white rounded-full text-sm font-semibold hover:bg-amber-700 transition-colors"
+            >
+              Boka Nu
+            </a>
+            <button
+              onClick={() => setMenuOpen(!menuOpen)}
+              className="w-9 h-9 flex flex-col items-center justify-center gap-1.5 rounded-lg hover:bg-gray-100 transition-colors"
+              aria-label="Toggle menu"
+            >
+              <span className={`block w-5 h-0.5 bg-gray-700 transition-all duration-300 ${menuOpen ? "rotate-45 translate-y-2" : ""}`} />
+              <span className={`block w-5 h-0.5 bg-gray-700 transition-all duration-300 ${menuOpen ? "opacity-0" : ""}`} />
+              <span className={`block w-5 h-0.5 bg-gray-700 transition-all duration-300 ${menuOpen ? "-rotate-45 -translate-y-2" : ""}`} />
+            </button>
+          </div>
         </div>
+
+        {/* Mobile dropdown menu */}
+        {menuOpen && (
+          <div className="sm:hidden border-t border-gray-100 bg-white/95 backdrop-blur-md px-6 py-4 flex flex-col gap-4">
+            <a href="#services" onClick={() => setMenuOpen(false)} className="text-sm font-medium text-gray-700 hover:text-amber-600 transition-colors py-1">Tjänster</a>
+            <a href="#gallery" onClick={() => setMenuOpen(false)} className="text-sm font-medium text-gray-700 hover:text-amber-600 transition-colors py-1">Galleri</a>
+            <a href="#contact" onClick={() => setMenuOpen(false)} className="text-sm font-medium text-gray-700 hover:text-amber-600 transition-colors py-1">Kontakt</a>
+          </div>
+        )}
       </nav>
 
       {/* ── HERO ── */}
@@ -29,12 +69,12 @@ export default function BarberLanding() {
         <div className="absolute inset-0 bg-black/60" />
 
         <div className="relative z-10 text-center text-white px-6 max-w-4xl mx-auto">
-          <p className="text-amber-400 text-sm font-semibold uppercase tracking-widest mb-4">
+          <p className="text-amber-500 text-sm font-semibold uppercase tracking-widest mb-4">
             Professionell Barbershop · Bellevue
           </p>
           <h1 className="text-5xl sm:text-7xl font-black leading-tight mb-6">
             Bellevue<br />
-            <span className="text-amber-400">Afro Barber</span>
+            <span className="text-amber-500">Afro Barber</span>
           </h1>
           <p className="text-lg sm:text-xl text-white/80 mb-10 max-w-xl mx-auto">
             Skarp klippning. Ren stil. Varje gång.
@@ -42,7 +82,7 @@ export default function BarberLanding() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
               href="tel:0790784861"
-              className="px-8 py-4 bg-amber-500 text-white rounded-full font-bold text-lg hover:bg-amber-600 transition-colors"
+              className="px-8 py-4 bg-amber-600 text-white rounded-full font-bold text-lg hover:bg-amber-700 transition-colors"
             >
               📞 Boka tid — 0790 78 48 61
             </a>
@@ -68,7 +108,7 @@ export default function BarberLanding() {
       <section id="services" className="py-24 px-6 bg-gray-50">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-16">
-            <p className="text-amber-500 text-sm font-semibold uppercase tracking-widest mb-3">Vad vi erbjuder</p>
+            <p className="text-gray-400 text-sm font-semibold uppercase tracking-widest mb-3">Vad vi erbjuder</p>
             <h2 className="text-4xl font-black text-gray-900">Tjänster & Priser</h2>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
@@ -84,7 +124,7 @@ export default function BarberLanding() {
               <div className="p-6">
                 <div className="flex items-center justify-between mb-2">
                   <h3 className="text-xl font-bold text-gray-900">Haircut</h3>
-                  <span className="text-2xl font-black text-amber-500">140 kr</span>
+                  <span className="text-2xl font-black text-amber-600">140 kr</span>
                 </div>
                 <p className="text-gray-500 text-sm">Professionell klippning anpassad efter din stil.</p>
               </div>
@@ -102,7 +142,7 @@ export default function BarberLanding() {
               <div className="p-6">
                 <div className="flex items-center justify-between mb-2">
                   <h3 className="text-xl font-bold text-gray-900">Fade</h3>
-                  <span className="text-2xl font-black text-amber-500">200 kr</span>
+                  <span className="text-2xl font-black text-amber-600">200 kr</span>
                 </div>
                 <p className="text-gray-500 text-sm">Skarp fade-klippning för ett rent och modernt utseende.</p>
               </div>
@@ -120,7 +160,7 @@ export default function BarberLanding() {
               <div className="p-6">
                 <div className="flex items-center justify-between mb-2">
                   <h3 className="text-xl font-bold text-gray-900">Beard Trim</h3>
-                  <span className="text-2xl font-black text-amber-500">100 kr</span>
+                  <span className="text-2xl font-black text-amber-600">100 kr</span>
                 </div>
                 <p className="text-gray-500 text-sm">Formning och trimning av skägg för ett välvårdat look.</p>
               </div>
@@ -130,10 +170,10 @@ export default function BarberLanding() {
       </section>
 
       {/* ── GALLERY ── */}
-      <section className="py-24 px-6 bg-white">
+      <section id="gallery" className="py-24 px-6 bg-white">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-16">
-            <p className="text-amber-500 text-sm font-semibold uppercase tracking-widest mb-3">Vårt arbete</p>
+            <p className="text-gray-400 text-sm font-semibold uppercase tracking-widest mb-3">Vårt arbete</p>
             <h2 className="text-4xl font-black text-gray-900">Galleri</h2>
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
@@ -146,11 +186,11 @@ export default function BarberLanding() {
       </section>
 
       {/* ── HOURS & LOCATION ── */}
-      <section className="py-24 px-6 bg-gray-900 text-white">
-        <div className="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-16">
+      <section id="contact" className="py-24 px-6 bg-gray-900 text-white">
+        <div className="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-12 items-start">
           {/* Hours */}
           <div>
-            <p className="text-amber-400 text-sm font-semibold uppercase tracking-widest mb-4">Öppettider</p>
+            <p className="text-gray-400 text-sm font-semibold uppercase tracking-widest mb-4">Öppettider</p>
             <h2 className="text-3xl font-black mb-8">När vi är öppna</h2>
             <div className="space-y-4">
               {[
@@ -164,57 +204,40 @@ export default function BarberLanding() {
               ].map(({ day, time }) => (
                 <div key={day} className="flex justify-between border-b border-white/10 pb-3">
                   <span className="text-white/70">{day}</span>
-                  <span className={`font-semibold ${time === "Stängt" ? "text-red-400" : "text-amber-400"}`}>{time}</span>
+                  <span className={`font-semibold ${time === "Stängt" ? "text-red-400" : "text-amber-600"}`}>{time}</span>
                 </div>
               ))}
             </div>
           </div>
 
-          {/* Location & Contact */}
+          {/* Map */}
           <div>
-            <p className="text-amber-400 text-sm font-semibold uppercase tracking-widest mb-4">Hitta oss</p>
-            <h2 className="text-3xl font-black mb-8">Kontakt & Adress</h2>
-            <div className="space-y-6">
-              <div className="flex items-start gap-4">
-                <div className="w-10 h-10 rounded-full bg-amber-500/20 flex items-center justify-center shrink-0 mt-1">
-                  <span className="text-amber-400">📍</span>
-                </div>
-                <div>
-                  <p className="font-semibold text-white">Adress</p>
-                  <p className="text-white/60">Stallmästaregatan, Göteborg</p>
-                </div>
-              </div>
-              <div className="flex items-start gap-4">
-                <div className="w-10 h-10 rounded-full bg-amber-500/20 flex items-center justify-center shrink-0 mt-1">
-                  <span className="text-amber-400">📞</span>
-                </div>
-                <div>
-                  <p className="font-semibold text-white">Telefon</p>
-                  <a href="tel:0790784861" className="text-amber-400 hover:underline">0790 78 48 61</a>
-                </div>
-              </div>
-              <div className="flex items-start gap-4">
-                <div className="w-10 h-10 rounded-full bg-amber-500/20 flex items-center justify-center shrink-0 mt-1">
-                  <span className="text-amber-400">🕐</span>
-                </div>
-                <div>
-                  <p className="font-semibold text-white">Promentur</p>
-                  <p className="text-white/60">Mån–Lör 09:00–19:00</p>
-                </div>
-              </div>
+            <p className="text-gray-400 text-sm font-semibold uppercase tracking-widest mb-4">Hitta oss</p>
+            <h2 className="text-3xl font-black mb-8">Var vi finns</h2>
+            <div className="rounded-2xl overflow-hidden">
+              <iframe
+                src="https://maps.google.com/maps?q=57.72994744801842,12.02204701042644&hl=sv&z=17&t=k&output=embed"
+                width="100%"
+                height="340"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Bellevue Afro Barber location"
+              />
             </div>
           </div>
         </div>
       </section>
 
       {/* ── CTA BANNER ── */}
-      <section className="py-20 px-6 bg-amber-500">
+      <section className="py-20 px-6 bg-gray-900">
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-4xl font-black text-white mb-4">Redo för en ny look?</h2>
-          <p className="text-white/80 text-lg mb-8">Ring oss och boka din tid idag. Inga väntetider, bara resultat.</p>
+          <p className="text-white/60 text-lg mb-8">Ring oss och boka din tid idag. Inga väntetider, bara resultat.</p>
           <a
             href="tel:0790784861"
-            className="inline-block px-10 py-4 bg-white text-amber-600 rounded-full font-bold text-lg hover:bg-gray-100 transition-colors"
+            className="inline-block px-10 py-4 bg-amber-600 text-white rounded-full font-bold text-lg hover:bg-amber-700 transition-colors"
           >
             📞 Ring nu — 0790 78 48 61
           </a>
@@ -224,7 +247,7 @@ export default function BarberLanding() {
       {/* ── FOOTER ── */}
       <footer className="py-8 px-6 bg-gray-950 text-center text-white/40 text-sm">
         <p>© {new Date().getFullYear()} Bellevue Afro Barber · Stallmästaregatan, Göteborg</p>
-        <p className="mt-1 text-xs">Website made by <span className="text-amber-500">A5S Group</span></p>
+        <p className="mt-1 text-xs">Hemsida skapad av <a href="https://a5sgroup.com/" target="_blank" rel="noopener noreferrer" className="text-amber-600 hover:underline">A5S Group</a></p>
       </footer>
 
     </div>
