@@ -48,6 +48,9 @@ export const metadata: Metadata = {
     title: "Bellevue Afro Barber | Göteborg",
     description: "Professionell barbershop på Stallmästaregatan, Göteborg. Ring 0790 78 48 61.",
   },
+  verification: {
+    google: "mhRb4JXlsOeADpg9PCIJGw4qLOmXKVQJV52IBOEnkQM",
+  },
   robots: {
     index: true,
     follow: true,
