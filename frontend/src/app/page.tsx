@@ -10,9 +10,9 @@ export default function BarberLanding() {
       {/* ── NAVBAR ── */}
       <nav className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-100">
         <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-          <span className="text-xl font-bold tracking-tight text-gray-900">
+          <a href="#" className="text-xl font-bold tracking-tight text-gray-900 hover:opacity-80 transition-opacity cursor-pointer">
             Bellevue <span className="text-amber-600">Afro</span> Barber
-          </span>
+          </a>
 
           {/* Desktop nav links */}
           <div className="hidden sm:flex items-center gap-8">
